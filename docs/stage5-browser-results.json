@@ -1,0 +1,16 @@
+{
+  "title": "QA браузер этап 5 79aeb3b7",
+  "student_id": "8efba029-2538-4a2f-8a52-e64ac8e1da8f",
+  "scenario_id": "5402162d-fb55-4d74-bc57-fc78e28b40d4",
+  "checks": [
+    "teacher: assign DDS profile; EKP search, routing preview, create card in UI",
+    "teacher: approve rubric and publish",
+    "teacher: create and start session",
+    "student: search and receive immutable 112 card; timer",
+    "student: status history, DDS fields, comment, dirty guard, reload persistence",
+    "student: mobile layout, completion 9/9, immutable archive",
+    "teacher: detailed report, real CSV/PDF downloads, finish session",
+    "admin: login"
+  ],
+  "page_errors": []
+}

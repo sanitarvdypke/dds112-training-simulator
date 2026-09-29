@@ -1,0 +1,72 @@
+{
+  "session_id": "95bf11f2-0761-4ada-a510-cf1de1f03b63",
+  "scenario_id": "0085db84-6bbb-415f-b712-808a58b87bd1",
+  "title": "Этап 4 — эталон, нормативы и подробный отчёт",
+  "rubric": {
+    "steps": [
+      {
+        "status": "ПРИНЯТО",
+        "weight": 2,
+        "within_sec": 30,
+        "anchor": "RECEIVED",
+        "require_comment": false
+      },
+      {
+        "status": "НАЧАЛО РЕАГИРОВАНИЯ",
+        "weight": 2,
+        "within_sec": 120,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      },
+      {
+        "status": "ПРИБЫТИЕ",
+        "weight": 2,
+        "within_sec": 120,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      },
+      {
+        "status": "ПРОВЕДЕНИЕ РАБОТ",
+        "weight": 2,
+        "within_sec": 120,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      },
+      {
+        "status": "РАБОТЫ ЗАВЕРШЕНЫ",
+        "weight": 2,
+        "within_sec": 180,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      }
+    ],
+    "total_time_sec": 600,
+    "require_comment": true,
+    "required_fields": [
+      "measures",
+      "outcome"
+    ]
+  },
+  "approval": {
+    "id": "666388c4-1b74-4643-9ec5-220399d03218",
+    "approved_by": "d5423675-5b6d-4575-86f8-ab4de3422b5d",
+    "approved_at": "2026-09-28T22:23:43.955182+00:00"
+  },
+  "inbox": {
+    "session_id": "95bf11f2-0761-4ada-a510-cf1de1f03b63",
+    "session_title": "Этап 4 — эталон, нормативы и подробный отчёт",
+    "scenario_id": "0085db84-6bbb-415f-b712-808a58b87bd1",
+    "number": "112-95bf11f2-0085db84",
+    "title": "Этап 4 — оценка работы ДДС по эталону",
+    "incident_type": "ДТП без пострадавших",
+    "address": "Учебный адрес: улица Тренировочная, 4",
+    "ekp_code": "2010000",
+    "available_at": "2026-09-28T22:23:44.016853+00:00",
+    "received_at": null,
+    "completed_at": null,
+    "call_id": null,
+    "state": "NEW",
+    "service_status": "ДОБАВЛЕНА",
+    "active_call_id": null
+  }
+}

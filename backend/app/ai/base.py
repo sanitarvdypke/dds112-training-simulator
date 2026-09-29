@@ -1,0 +1,6 @@
+from abc import ABC, abstractmethod
+class AIProvider(ABC):
+    @abstractmethod
+    async def generate_scenario(self, context: dict) -> dict: ...
+    @abstractmethod
+    async def analyze_text(self, text: str, expected: str | None = None) -> dict: ...

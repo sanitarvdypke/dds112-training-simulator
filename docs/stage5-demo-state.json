@@ -1,0 +1,53 @@
+{
+  "session_id": "3f5227e1-859c-4e51-a9d3-7a5388abb4ca",
+  "scenario_id": "c10a054e-4e4f-4408-a9e9-3394e51b2a1d",
+  "title": "Финальная демонстрация — интерфейс ДДС по образцам ТЗ",
+  "rubric": {
+    "steps": [
+      {
+        "status": "ПРИНЯТО",
+        "weight": 2,
+        "within_sec": 30,
+        "anchor": "RECEIVED",
+        "require_comment": false
+      },
+      {
+        "status": "НАЧАЛО РЕАГИРОВАНИЯ",
+        "weight": 2,
+        "within_sec": 120,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      },
+      {
+        "status": "РАБОТЫ ЗАВЕРШЕНЫ",
+        "weight": 2,
+        "within_sec": 300,
+        "anchor": "PREVIOUS",
+        "require_comment": false
+      }
+    ],
+    "total_time_sec": 600,
+    "require_comment": true,
+    "required_fields": [
+      "measures",
+      "outcome"
+    ]
+  },
+  "inbox": {
+    "session_id": "3f5227e1-859c-4e51-a9d3-7a5388abb4ca",
+    "session_title": "Финальная демонстрация — интерфейс ДДС по образцам ТЗ",
+    "scenario_id": "c10a054e-4e4f-4408-a9e9-3394e51b2a1d",
+    "number": "112-3f5227e1-c10a054e",
+    "title": "Финальная демонстрация — ДТП без пострадавших",
+    "incident_type": "ДТП без пострадавших",
+    "address": "Учебный адрес: улица Тренировочная, дом 5",
+    "ekp_code": "2010000",
+    "available_at": "2026-09-29T05:23:33.488196+00:00",
+    "received_at": null,
+    "completed_at": null,
+    "call_id": null,
+    "state": "NEW",
+    "service_status": "ДОБАВЛЕНА",
+    "active_call_id": null
+  }
+}

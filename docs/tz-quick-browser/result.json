@@ -1,0 +1,15 @@
+{
+  "managed_user": "qa-ui-managed-a241117f@example.local",
+  "session": "QA досрочное завершение a241117f",
+  "student_id": "8d7cf16e-5cbc-4dbf-914a-87a850668e77",
+  "call_id": "4cd35c2e-6ab7-4609-81b4-124e3a79f8c2",
+  "checks": [
+    "admin created a user",
+    "admin changed the role",
+    "admin blocked the account",
+    "admin opened system status",
+    "teacher force-finished an active card",
+    "forced card contains an assessment"
+  ],
+  "page_errors": []
+}

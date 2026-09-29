@@ -1,0 +1,18 @@
+stages: [test, build]
+
+backend-test:
+  image: python:3.12-slim
+  stage: test
+  script:
+    - cd backend
+    - pip install -r requirements.txt
+    - python -m compileall app
+    - pytest -q
+
+frontend-build:
+  image: node:22-alpine
+  stage: build
+  script:
+    - cd frontend
+    - npm install
+    - npm run build

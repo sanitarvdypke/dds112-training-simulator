@@ -1,0 +1,51 @@
+const BASE='http://localhost:8000/api';
+export function token(){return localStorage.getItem('dds112_token')||''}
+async function request<T>(path:string,options:RequestInit={}):Promise<T>{
+ const headers=new Headers(options.headers); if(!(options.body instanceof FormData)) headers.set('Content-Type','application/json'); if(token()) headers.set('Authorization',`Bearer ${token()}`);
+ const res=await fetch(BASE+path,{...options,headers}); if(!res.ok){const body=await res.json().catch(()=>({})); throw new Error(typeof body.detail==='string'?body.detail:JSON.stringify(body.detail||`HTTP ${res.status}`))} return res.json();
+}
+export const api={
+ adminUsers:()=>request<any[]>('/admin/users'),
+ createAdminUser:(payload:any)=>request<any>('/admin/users',{method:'POST',body:JSON.stringify(payload)}),
+ updateAdminUser:(id:string,payload:any)=>request<any>(`/admin/users/${id}`,{method:'PUT',body:JSON.stringify(payload)}),
+ systemStatus:()=>request<any>('/admin/system'),
+ groups:()=>request<any[]>('/groups'),
+ createGroup:(payload:any)=>request<any>('/groups',{method:'POST',body:JSON.stringify(payload)}),
+ updateGroup:(id:string,payload:any)=>request<any>(`/groups/${id}`,{method:'PUT',body:JSON.stringify(payload)}),
+ deleteGroup:(id:string)=>request<any>(`/groups/${id}`,{method:'DELETE'}),
+ approveRubric:(id:string,payload:any)=>request<any>(`/scenarios/${id}/rubric`,{method:'PUT',body:JSON.stringify(payload)}),
+ cloneScenario:(id:string)=>request<any>(`/scenarios/${id}/clone`,{method:'POST'}),
+ report:(id:string)=>request<any>(`/reports/assessment/${id}`),
+ inbox:()=>request<any[]>('/sessions/inbox'),
+ message:(id:string)=>request<any>(`/sessions/messages/${id}`),
+ receiveMessage:(sessionId:string,scenarioId:string)=>request<any>(`/sessions/${sessionId}/messages/receive?scenario_id=${encodeURIComponent(scenarioId)}`,{method:'POST'}),
+ ddsServices:()=>request<any[]>('/dds/services'),
+ ddsStudents:()=>request<any[]>('/dds/students'),
+ ddsProfile:(id:string,service_key:string)=>request<any>('/dds/students/'+id+'/profile',{method:'PUT',body:JSON.stringify({service_key})}),
+ routingPreview:(payload:any)=>request<any>('/dds/routing/preview',{method:'POST',body:JSON.stringify(payload)}),
+ createDdsScenario:(payload:any)=>request<any>('/dds/scenarios',{method:'POST',body:JSON.stringify(payload)}),
+ login:(email:string,password:string)=>request<{access_token:string}>('/auth/login',{method:'POST',body:JSON.stringify({email,password})}),
+ me:()=>request<any>('/auth/me'),
+ scenarios:()=>request<any[]>('/scenarios'),
+ generate:(category:string)=>request<any>('/scenarios/generate',{method:'POST',body:JSON.stringify({category})}),
+ createScenario:(payload:any)=>request<any>('/scenarios',{method:'POST',body:JSON.stringify(payload)}),
+ publishScenario:(id:string)=>request<any>(`/scenarios/${id}/publish`,{method:'POST'}),
+ reports:()=>request<any[]>('/reports/assessments'),
+ reportSummary:(includeQa=false)=>request<any>(`/reports/summary?include_qa=${includeQa}`),
+ classifierImports:(offset=0)=>request<any>(`/imports/classifier?offset=${offset}`),
+ stageClassifier:(file:File)=>{const body=new FormData();body.append('file',file);return request<any>('/imports/classifier/stage',{method:'POST',body})},
+ classifier:(id:string)=>request<any>(`/imports/classifier/${id}`),
+ commitClassifier:(id:string)=>request<any>(`/imports/classifier/${id}/commit`,{method:'POST'}),
+ classifierEntries:(id:string,query:string)=>request<any>(`/imports/classifier/${id}/entries?${query}`),
+ classifierEntry:(id:string,entryId:string)=>request<any>(`/imports/classifier/${id}/entries/${entryId}`),
+ downloadReport:async(id:string,format:'csv'|'pdf')=>{const res=await fetch(`${BASE}/reports/assessment/${id}.${format}`,{headers:{Authorization:`Bearer ${token()}`}});if(!res.ok)throw new Error('Не удалось скачать отчёт');const url=URL.createObjectURL(await res.blob());const a=document.createElement('a');a.href=url;a.download=`assessment-${id}.${format}`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)},
+ sessions:()=>request<any[]>('/sessions'),
+ studentSessions:()=>request<any[]>('/sessions?messages_only=true'),
+ createSession:(payload:any)=>request<any>('/sessions',{method:'POST',body:JSON.stringify(payload)}),
+ startSession:(id:string)=>request<any>(`/sessions/${id}/start`,{method:'POST'}),
+ finishSession:(id:string)=>request<any>(`/sessions/${id}/finish`,{method:'POST'}),
+ forceFinishSession:(id:string)=>request<any>(`/sessions/${id}/finish?force=true`,{method:'POST'}),
+ startCall:(id:string)=>request<any>(`/sessions/${id}/messages/receive`,{method:'POST'}),
+ action:(id:string,payload:any)=>request<any>(`/sessions/messages/${id}/actions`,{method:'POST',body:JSON.stringify(payload)}),
+ complete:(id:string)=>request<any>(`/sessions/messages/${id}/complete`,{method:'POST'})
+}
